@@ -1,15 +1,16 @@
-baseURL = "/"
+baseURL = "https://doc.tryfastgpt.ai"
 languageCode = "en-GB"
 contentDir = "content"
 enableEmoji = true
 enableGitInfo = false # N.B. .GitInfo does not currently function with git submodule content directories
 
 defaultContentLanguage = 'zh-cn'
+defaultContentLanguageInSubdir = false
 [languages]
   [languages.zh-cn]
     title = "FastGPT"
     languageName = "简体中文"
-    #contentDir = "content/zh-cn"
+    contentDir = "content/zh-cn"
     weight = 10
   [languages.en]
     title = "FastGPT Docs"
@@ -17,6 +18,9 @@ defaultContentLanguage = 'zh-cn'
     contentDir = "content/en"
     weight = 10
     disabled = true
+
+[build]
+  noJSConfigInAssets = true
 
 [module]
   [module.hugoVersion]
@@ -48,12 +52,13 @@ defaultContentLanguage = 'zh-cn'
 
   google_fonts = [
     ["Inter", "300, 400, 600, 700"],
-    ["Fira Code", "500, 700"]
+    ["Fira Code", "500, 700"],
+    ["JetBrains Mono", "500, 700"]
   ]
 
-  sans_serif_font = "Inter"     # Default is System font
-  secondary_font  = "Inter"     # Default is System font
-  mono_font       = "Fira Code" # Default is System font
+  #sans_serif_font = "LXGW WenKai Screen"     # Default is System font
+  #secondary_font  = "LXGW WenKai Screen"     # Default is System font
+  mono_font       = "JetBrains Mono" # Default is System font
 
     [params.footer]
         copyright = "© :YEAR: the FastGPT Authors."
@@ -64,21 +69,24 @@ defaultContentLanguage = 'zh-cn'
         # twitter = ""       # YOUR_TWITTER_ID
         # instagram = "colinwilson"     # YOUR_INSTAGRAM_ID
         # rss = true                    # show rss icon with link
-        wechat = "/wechat-fastgpt.webp"
+        wechat = "https://oss.laf.run/htr4n1-images/fastgpt-qr-code.jpg"
 
     [params.docs] # Parameters for the /docs 'template'
         title           = ""           # default html title for documentation pages/sections
 
         # pathName        = "docs"                            # path name for documentation site | default "docs"
 
-        # themeColor      = "cyan"                            # (optional) - Set theme accent colour. Options include: blue (default), green, red, yellow, emerald, cardinal, magenta, cyan
+        # themeColor      = "blue"                            # (optional) - Set theme accent colour. Options include: blue (default), green, red, yellow, emerald, cardinal, magenta, cyan
 
         darkMode        = true                                # enable dark mode option? default false
 
         prism           = true                                # enable syntax highlighting via Prism
 
+        prismTheme      = "lotusdocs"                           # (optional) - Set theme for PrismJS. Options include: lotusdocs (default), solarized-light, twilight, lucario
+
         # gitinfo
-        ghrepo          = "https://github.com/labring/FastGPT"  # Git repository URL for your site
+        repoURL         = "https://github.com/labring/FastGPT"  # Git repository URL for your site
+        repoBranch      = "main"                           # Name of your Git repository branch
         editPage        = true                                # enable 'Edit this page' feature - default false
         lastMod         = false                                # enable 'Last modified' date on pages - default false
         lastModRelative = true                                # format 'Last modified' time as relative - default true
@@ -102,9 +110,14 @@ defaultContentLanguage = 'zh-cn'
 
         listDescTrunc   = 100                                 # Number of characters by which to truncate the list card description
 
+        # Link behaviour
+        intLinkTooltip  = true                                # Enable a tooltip for internal links that displays info about the destination? default false
+        # extLinkNewTab   = false                             # Open external links in a new Tab? default true
+        logoLinkURL = "https://tryfastgpt.ai/"                                    # Set a custom URL destination for the top header logo link.
+
     [params.flexsearch] # Parameters for FlexSearch
-        enabled             = true
-        tokenize            = "full"
+        # enabled             = true
+        # tokenize            = "full"
         # optimize            = true
         # cache               = 100
         # minQueryChar        = 3 # default is 0 (disabled)
@@ -112,9 +125,9 @@ defaultContentLanguage = 'zh-cn'
         # searchSectionsIndex = []
 
     [params.docsearch] # Parameters for DocSearch
-        # appID     = "O2QIOCBDAK" # Algolia Application ID
-        # apiKey    = "fdc60eee76a72a35d739b54521498b77" # Algolia Search-Only API (Public) Key
-        # indexName = "prod_lotusdocs.dev" # Index Name to perform search on (or set env variable HUGO_PARAM_DOCSEARCH_indexName)
+        appID     = "5BEWEMH0YA" # Algolia Application ID
+        apiKey    = "14834e919a87217d919d6d881fcacac3" # Algolia Search-Only API (Public) Key
+        indexName = "fastgpt" # Index Name to perform search on (or set env variable HUGO_PARAM_DOCSEARCH_indexName)
 
     [params.analytics] # Parameters for Analytics (Google, Plausible)
         # plausibleURL    = "/docs/s" # (or set via env variable HUGO_PARAM_ANALYTICS_plausibleURL)
@@ -143,6 +156,11 @@ defaultContentLanguage = 'zh-cn'
         #   ["Code sample errors", "One or more code samples are incorrect."],
         #   ["Something else"]
         # ]
+
+    [params.umamiAnalytics]
+      websiteid = "69b3f2c6-39a5-4937-b92d-6fdd5c8f5958"
+      domain = "umami.fastgpt.in"
+      scriptName = "fastgpt"
 
 [menu]
 [[menu.primary]]

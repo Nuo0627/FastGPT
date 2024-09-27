@@ -2,3 +2,7 @@ dist
 .vscode
 **/.DS_Store
 node_modules
+docSite/
+*.md
+
+cl100l_base.ts
